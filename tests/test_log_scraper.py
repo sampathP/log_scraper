@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Tests for `log_scraper` package."""
+import unittest
+import unittest.mock as mock
+import log_scraper
+from log_scraper import buffalow
+import builtins
+
+
+class testlog_scraper(unittest.TestCase):
+
+    # @mock.patch('__builtin__.open')
+    # def setUp(self, m_open):
+    #     pass
+
+    @mock.patch('log_scraper.buffalow.tail_f')
+    def test_FW_message(self, m_tail_f):
+        log_scraper.buffalow.daemon_log("/dum/dum")
+        m_tail_f.assert_called_with("/dum/dum")
+
+    # @mock.patch('log_scraper.__builtin__.open')
+    # def test_tail_f(self, m_open):
+    #     m_open.return_value('file_content')
+    #     buffalow.tail_f(m_open("/a/b/file.log"))
+
+    def test_tail_f(self):
+        dt = 'readline1\nreadline2\nreadline3\n'
+        mock_io = mock.mock_open(read_data=dt)
+        with mock.patch('log_scraper.buffalow.open', mock_io):
+            buffalow.tail_f('testFname')
+            mock_io.assert_called_once_with(
+                '/var/syslog/hosts/buffalo.setup/testFname'
+            )
+
+
+if __name__ == '__main__':
+    unittest.main()
+

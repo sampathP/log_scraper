@@ -1,0 +1,89 @@
+from prometheus_client import Counter
+from prometheus_client import Gauge
+from prometheus_client import CollectorRegistry
+
+# separate registry is used, as the default registry may contain other metrics
+registry = CollectorRegistry()
+g_reg = CollectorRegistry()
+# Define Counters
+# Doc: https://github.com/prometheus/client_python
+# Define daemon log counters
+# DHCPS events
+daemon_c_dhcps = Counter('daemon_c_dhcps',
+                         'Number of DHCP request in daemon log',
+                         registry=registry)
+daemon_c_dhcps_ack = Counter('daemon_c_dhcps_ack',
+                             'Number of DHCP ack in daemon log',
+                             registry=registry)
+daemon_c_dhcps_req = Counter('daemon_c_dhcps_req',
+                             'Number of DHCP  req in daemon log',
+                             registry=registry)
+daemon_c_dhcps_offer = Counter('daemon_c_dhcps_offer',
+                               'Number of DHCP offers in daemon log',
+                               registry=registry)
+daemon_dhcp_info = Info('daemon_dhcp_info',
+                        'Daemon log Info about DHCP activities',
+                        registry=registry)
+# Auth events
+daemon_c_auth = Counter('daemon_c_auth',
+                        'Number of Auth request in daemon log',
+                        registry=registry)
+
+# FIREWALL Events
+daemon_c_fw = Counter('daemon_c_fw',
+                      'Number of Firewall alarts in daemon log',
+                      registry=registry)
+daemon_c_fw_tcp = Counter('daemon_c_fw_tcp',
+                          'Number of Firewall TCP alarts in daemon log',
+                          registry=registry)
+daemon_c_fw_udp = Counter('daemon_c_fw_udp',
+                          'Number of Firewall UDP alarts in daemon log',
+                          registry=registry)
+daemon_c_fw_icmp = Counter('daemon_c_fw_icmp',
+                           'Number of Firewall ICMP alarts in daemon log',
+                           registry=registry)
+daemon_g_fw = Gauge('daemon_g_fw',
+                    'Number of Firewall alarts in daemon log',
+                    registry=g_reg)
+daemon_info = Info('info_daemon',
+                   'Daemon log Info',
+                   registry=registry)
+daemon_fw_info = Info('daemon_fw_info',
+                      'Daemon log Info about FW activities',
+                      registry=registry)
+
+
+# Define user log counters
+user_c_auth = Counter('user_c_auth',
+                      'Number of Auth request in user log',
+                      registry=registry)
+user_g_auth = Gauge('user_g_auth',
+                    'Number of Auth request in user log',
+                    registry=g_reg)
+user_c_sys = Counter('user_sys',
+                     'Number of System alarts in user log',
+                     registry=registry)
+user_g_sys = Gauge('user_g_sys',
+                   'Number of System alarts in user log',
+                   registry=g_reg)
+user_info = Info('user_info',
+                 'User log Info',
+                 registry=registry)
+# Define corn log counters
+# No counters at this time
+cron_c_count = Counter('cron_c_count_cron',
+                       'Number of alarts in cron log',
+                       registry=registry)
+cron_g_count = Gauge('cron_g_count',
+                     'Number of alarts in cron log',
+                     registry=g_reg)
+cron_info = Info('cron_info_cron',
+                 'Cron log Info',
+                 registry=registry)
+# Other Counter
+g_unknwon_count = Gauge('unknwon_count',
+                        'Number of Unknown events in log',
+                        registry=g_reg)
+unknwon_count = Counter('unknwon_count',
+                        'Number of Unknown events in log',
+                        registry=registry)
