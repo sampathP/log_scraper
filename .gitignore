@@ -99,3 +99,15 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#eamcs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+# Tokens
+tokens*
