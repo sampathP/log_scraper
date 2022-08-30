@@ -3,9 +3,8 @@
 
 """
 ===============================
-HtmlTestRunner
+Log Scraper
 ===============================
-
 
 .. image:: https://img.shields.io/pypi/v/log_scraper.svg
         :target: https://pypi.python.org/pypi/log_scraper
