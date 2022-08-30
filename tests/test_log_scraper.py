@@ -6,7 +6,6 @@ import unittest
 import unittest.mock as mock
 import log_scraper
 from log_scraper import buffalow
-import builtins
 
 
 class testlog_scraper(unittest.TestCase):
@@ -29,7 +28,7 @@ class testlog_scraper(unittest.TestCase):
         dt = 'readline1\nreadline2\nreadline3\n'
         mock_io = mock.mock_open(read_data=dt)
         with mock.patch('log_scraper.buffalow.open', mock_io):
-            buffalow.tail_f('testFname')
+            log_scraper.buffalow.tail_f('testFname')
             mock_io.assert_called_once_with(
                 '/var/syslog/hosts/buffalo.setup/testFname'
             )
@@ -37,4 +36,3 @@ class testlog_scraper(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
