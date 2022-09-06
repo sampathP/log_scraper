@@ -4,7 +4,10 @@
 """Tests for `log_scraper` package."""
 import unittest
 import unittest.mock as mock
-from log_scraper import buffalow
+try:
+    from log_scraper import buffalow
+except RuntimeError as e:
+    print(e)
 from tests import test_msgs as tm
 
 
@@ -22,9 +25,11 @@ class testlog_scraper(unittest.TestCase):
     @mock.patch('log_scraper.buffalow.tail_f')
     def test_dhcp_dhcprequest(self, m_tail_f, mc):
         m_tail_f.return_value = tm.DHCPS_DHCPREQUEST
-        buffalow.daemon_log("/dum/dum")
+        mock_w2t = mock.MagicMock()
+        with mock.patch('log_scraper.buffalow.write_to_textfile', mock_w2t):
+            buffalow.daemon_log("/dum/dum")
         mc.daemon_c_dhcps_req.inc.assert_called()
-        
+       
     # @mock.patch('log_scraper.__builtin__.open')
     # def test_tail_f(self, m_open):
     #     m_open.return_value('file_content')

@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DHCPS_DHCPREQUEST = """
-Aug  5 04:13:06 buffalo.setup  [50:C4:DD:C0:66:F8] AP50C4DDC066F8 : DHCPS: DHCPREQUEST for 192.168.11.111 from d4:3b:04:7d:3e:e4 (k190801262a) via br0
-"""
+DHCPS_DHCPREQUEST = ['Aug  5 04:13:06 buffalo.setup  [50:C4:DD:C0:66:F8] AP50C4DDC066F8 : DHCPS: DHCPREQUEST for 192.168.11.111 from d4:3b:04:7d:3e:e4 (k190801262a) via br0']
 # Aug  5 03:59:50 buffalo.setup  [50:C4:DD:C0:66:F8] AP50C4DDC066F8 : DHCPS: DHCPREQUEST for 192.168.11.66 from 00:1c:fc:4f:82:06 via br0
 # """
 
